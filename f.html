@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api testing</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="try.css">
+</head>
+
+<body onload="atStart()">
+    <h2 class="main_title">IP Tracker</h2>
+    <div class=" cnt">
+        <input type="text" name="ip_data" class="inp" id="i" placeholder="enter  ip address">
+        <button onclick="fun()">Trace!</button>
+    </div>
+    <div class="api_data"></div>
+    <div class="data">
+        <label>current_ip :</label><span class="d1"></span>
+        <label>country :</label><span class="d3"></span>
+        <label>City :</label><span class="d4"></span>
+        <label>ISP :</label><span class="d2"></span>
+        <label>Time_Zone</label><span class="d5"></span>
+    </div>
+    <div id="map-point" class="map-view"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script>
+        function atStart() {
+            fetch("http://ip-api.com/json")
+                .then(result => result.json())
+                .then((d) => {
+                    let d_data = d;
+                    document.querySelector("#i").innerTEXT = `${d_data.query}`;
+                    fun();
+                })
+        }
+        fun = () => {
+            var ip = document.querySelector("#i").value;
+            console.log(ip);
+            var my_url = "http://ip-api.com/json/" + ip;
+            console.log(my_url);
+            var myData;
+            fetch(my_url)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                    let myData = data;
+                    document.querySelector(".d1").innerHTML = `${myData.query}`;
+                    document.querySelector(".d2").innerHTML = `${myData.isp}`;
+                    document.querySelector(".d3").innerHTML = `${myData.country}`;
+                    document.querySelector(".d4").innerHTML = `${myData.city}`;
+                    document.querySelector(".d5").innerHTML = `${myData.timezone}`;
+                    updateMarker([data.lat, data.lon]);
+                })
+                .catch(error => window.alert("Invalid ip", error))
+            document.querySelector("#i").value = "";
+        }
+        const map = L.map('map-point', {
+            'center': [0, 0],
+            'zoom': 0,
+            'layers': [
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                })
+            ]
+        })
+        updateMarker = (update_marker = [12.9634, 77.5855]) => {
+            map.setView(update_marker, 12);
+            L.marker(update_marker).addTo(map);
+        }
+        document.addEventListener('load', updateMarker())
+    </script>
+</body>
+
+</html>
