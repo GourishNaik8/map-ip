@@ -39,9 +39,21 @@
                 .then((d) => {
                     let d_data = d;
                     document.querySelector("#i").innerTEXT = `${d_data.query}`;
-                    fun();
+                    fun()
                 })
         }
+        var ip_in = document.getElementById("i");
+        ip_in.addEventListener("keydown", function (e) {
+            if (e.keyCode === 13) {
+                fun();
+            }
+        });
+
+        // function validate(e) {
+        //     document.querySelector(".hell").innerHTML = wage.value;
+
+        // }
+
         fun = () => {
             var ip = document.querySelector("#i").value;
             console.log(ip);
