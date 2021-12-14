@@ -101,7 +101,7 @@ span.down{
 .map-view {
   background-color: black;
   margin-top: -70px;
-  min-height:19.5rem;
+  min-height:35rem;
 }
 @media screen and (max-width:600px) {
   .title{
