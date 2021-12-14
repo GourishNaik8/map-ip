@@ -9,26 +9,39 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
-    <link rel="stylesheet" href="try.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body onload="atStart()">
-    <h2 class="main_title">IP Tracker</h2>
-    <div class=" cnt">
-        <input type="text" name="ip_data" class="inp" id="i" placeholder="enter  ip address">
-        <button onclick="fun()">Trace!</button>
+    <div class="main">
+        <div class="title">
+            <h1>IP Address Tracker</h1>
+            <div class="form-cnt">
+                <input type="text" name="ip_data" class="inp" id="i" placeholder="Search for any IP or domain">
+                <button onclick="fun()" class="btn">
+                    <img src="icon-arrow.svg">
+                </button>
+            </div>
+        </div>
+        <div class="results">
+            <div class="data-cnt">
+                <div class="api_data">
+                    <h4 class="gray-title">current_ip </h4>
+                    <span    id="d1" class="down"></span>
+                </div>
+                <div class="api_data">
+                    <h4 class="gray-title">Location </h4><span id="d2" class="down"></span>
+                </div>
+                <div class="api_data">
+                    <h4 class="gray-title">Time_Zone </h4><span id="d3" class="down"></span>
+                </div>
+                <div class="api_data last-block">
+                    <h4 class="gray-title">ISP </h4><span id="d4" class="down"></span>
+                </div>
+            </div>
+        </div>
+        <div id="map-point" class="map-view"></div>
     </div>
-    <div class="api_data"></div>
-    <div class="data">
-        <label>current_ip :</label><span class="d1"></span>
-        <label>country :</label><span class="d3"></span>
-        <label>City :</label><span class="d4"></span>
-        <label>ISP :</label><span class="d2"></span>
-        <label>Time_Zone</label><span class="d5"></span>
-    </div>
-    <div id="map-point" class="map-view"></div>
-    </div>
-
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>

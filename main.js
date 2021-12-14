@@ -26,11 +26,11 @@ fun = () => {
         .then((data) => {
             console.log(data);
             let myData = data;
-            document.querySelector(".d1").innerHTML = `${myData.query}`;
-            document.querySelector(".d2").innerHTML = `${myData.isp}`;
-            document.querySelector(".d3").innerHTML = `${myData.country}`;
-            document.querySelector(".d4").innerHTML = `${myData.city}`;
-            document.querySelector(".d5").innerHTML = `${myData.timezone}`;
+            document.querySelector("#d1").innerHTML = `${myData.query}`;
+            var statecity=`${myData.regionName}`+","+`${myData.city}`;
+            document.querySelector("#d2").innerHTML = statecity;
+            document.querySelector("#d3").innerHTML = `${myData.timezone}`;
+            document.querySelector("#d4").innerHTML = `${myData.isp}`;
             updateMarker([data.lat, data.lon]);
         })
         .catch(error => window.alert("Invalid ip", error))
@@ -45,7 +45,7 @@ const map = L.map('map-point', {
         })
     ]
 })
-updateMarker = (update_marker = [12.9634, 77.5855]) => {
+updateMarker = (update_marker = [0,0]) => {
     map.setView(update_marker, 12);
     L.marker(update_marker).addTo(map);
 }
