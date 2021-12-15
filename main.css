@@ -58,6 +58,10 @@ body {
   cursor: pointer;
 }
 
+.results {
+  height: 0;
+}
+
 .gray-title {
   position: relative;
   top: 0;
@@ -65,7 +69,6 @@ body {
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 1rem;
-  letter-spacing: 2px;
 }
 
 .data-cnt {
@@ -109,11 +112,11 @@ span.down {
 
 .map-view {
   background-color: black;
-  margin-top: -70px;
+  margin-top: 59px;
   min-height: 35rem;
 }
 
-@media screen and (max-width: 600px) {
+@media (min-width: 50px) and (max-width: 600px) {
   .title {
     height: 22rem;
   }
@@ -122,20 +125,29 @@ span.down {
     display: flex;
     flex-direction: column;
     min-height: auto;
-    top: -12rem;
+    top: -10rem;
+    margin-left: 2.2rem;
+    margin-right: 2.2rem;
   }
 
   .inp {
     width: -webkit-fill-available;
     min-width: auto;
+    margin: 1rem 0;
+  }
+
+  .btn {
+    margin: 1rem 0;
   }
 
   .gray-title {
     text-align: center;
+    margin: 0.5rem 0;
   }
 
   .api_data {
     border: none;
+    text-align: center;
   }
 
   .results {
