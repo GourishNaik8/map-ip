@@ -1,9 +1,9 @@
 function atStart() {
-    fetch("https://ip-api.com/json")
-        .then(result => result.json())
+    fetch("https://api.ipify.org")
+        .then(result => result)
         .then((d) => {
             let d_data = d;
-            document.querySelector("#i").innerTEXT = `${d_data.query}`;
+            document.querySelector("#i").innerTEXT = `${d_data.ip}`;
             fun()
         })
 }
