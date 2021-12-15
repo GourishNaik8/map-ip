@@ -1,5 +1,5 @@
 function atStart() {
-    fetch("http://ip-api.com/json")
+    fetch("https://ip-api.com/json")
         .then(result => result.json())
         .then((d) => {
             let d_data = d;
