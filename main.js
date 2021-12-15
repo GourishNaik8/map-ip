@@ -14,9 +14,10 @@ ip_in.addEventListener("keydown", function (e) {
     }
 });
 fun = () => {
-    var ip = document.querySelector("#i").value;
-    console.log(ip);
-    var my_url = "http://ip-api.com/json/" + ip;
+    var myip = document.querySelector("#i").value;
+    console.log(myip);
+    var my_url="https://geo.ipify.org/api/v2/country,city?apiKey=at_oc39VOha8Np48JsJ6rXFQ7nA4zTxz&ipAddress="+myip;
+    // var my_url = "http://ip-api.com/json/" + ip;
     console.log(my_url);
     var myData;
     fetch(my_url)
@@ -26,12 +27,13 @@ fun = () => {
         .then((data) => {
             console.log(data);
             let myData = data;
-            document.querySelector("#d1").innerHTML = `${myData.query}`;
-            var statecity=`${myData.regionName}`+","+`${myData.city}`;
+            document.querySelector("#d1").innerHTML = `${myData.ip}`;
+            var statecity=`${myData.location.region}`+","+`${myData.location.city}`+" "+`${myData.location.postalCode}`;
             document.querySelector("#d2").innerHTML = statecity;
-            document.querySelector("#d3").innerHTML = `${myData.timezone}`;
+            var timeZone="UTC "+`${myData.location.timezone}`;
+            document.querySelector("#d3").innerHTML = timeZone;
             document.querySelector("#d4").innerHTML = `${myData.isp}`;
-            updateMarker([data.lat, data.lon]);
+            updateMarker([data.location.lat, data.location.lng]);
         })
         .catch(error => window.alert("Invalid ip", error))
     document.querySelector("#i").value = "";
