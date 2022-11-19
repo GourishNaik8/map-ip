@@ -16,16 +16,13 @@ ip_in.addEventListener("keydown", function (e) {
 fun = () => {
     var myip = document.querySelector("#i").value;
     console.log(myip);
-    var my_url="https://geo.ipify.org/api/v2/country,city?apiKey=at_oc39VOha8Np48JsJ6rXFQ7nA4zTxz&ipAddress="+myip;
-    // var my_url = "http://ip-api.com/json/" + ip;
-    console.log(my_url);
+    var my_url="https://geo.ipify.org/api/v2/country,city?apiKey={your-api_key}&ipAddress="+myip;
     var myData;
     fetch(my_url)
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-            console.log(data);
             let myData = data;
             document.querySelector("#d1").innerHTML = `${myData.ip}`;
             var statecity=`${myData.location.region}`+","+`${myData.location.city}`+" "+`${myData.location.postalCode}`;
